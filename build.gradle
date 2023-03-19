@@ -20,6 +20,7 @@ configurations {
 
 ext {
 	set('springCloudVersion', "2021.0.3")
+	set('testcontainersVersion', "1.17.3")
 }
 
 dependencies {
@@ -29,9 +30,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.retry:spring-retry'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+	testImplementation 'org.testcontainers:postgresql'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -40,6 +43,7 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
 	}
 }
 
