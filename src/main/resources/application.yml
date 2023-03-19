@@ -11,9 +11,10 @@ polar:
   greeting: Welcome to the local book catalog!
 
 spring:
-  sql:
-    init:
-      mode: always
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    locations: classpath:db/migration
   datasource:
     username: user
     password: password
