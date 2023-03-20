@@ -49,9 +49,9 @@ jobs:
       security-events: write
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3 ❽
+        uses: actions/checkout@v3
       - name: Set up JDK
-        uses: actions/setup-java@v3 ❾
+        uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 11
