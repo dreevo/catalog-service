@@ -78,6 +78,6 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: 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
+          password: ${{ secrets.github-workflow }}
       - name: Publish container image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
