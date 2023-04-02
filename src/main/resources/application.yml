@@ -12,6 +12,11 @@ polar:
   greeting: Welcome to the local book catalog!
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/PolarBookshop
   lifecycle:
     timeout-per-shutdown-phase: 15s
   flyway:

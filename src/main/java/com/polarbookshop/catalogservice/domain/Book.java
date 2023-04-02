@@ -3,10 +3,7 @@ package com.polarbookshop.catalogservice.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.Version;
+import org.springframework.data.annotation.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -38,9 +35,15 @@ public class Book {
     Instant lastModifiedDate;
     @Version
     int version;
+    @CreatedBy
+    String createdBy;
 
-    public static Book of(String isbn, String title, String author, Double price, String publisher) {
-        return new Book(null, isbn, title, author, price, publisher, null, null, 0);
+    @LastModifiedBy
+    String lastModifiedBy;
+
+
+    public static Book of(String isbn, String title, String author, Double price, String publisher, String createdBy, String lastModifiedBy) {
+        return new Book(null, isbn, title, author, price, publisher, null, null, 0, createdBy, lastModifiedBy);
     }
 
 }
