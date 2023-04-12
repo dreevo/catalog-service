@@ -33,9 +33,10 @@ spring:
   application:
     name: catalog-service
   config:
-    import: "optional:configserver:"
+    import: ""
   cloud:
     config:
+      enabled: false
       uri: http://localhost:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
