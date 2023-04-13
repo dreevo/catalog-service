@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: dreevo/catalog-service
-  VERSION: latest
+  VERSION: ${{ github.sha }}
 
 jobs:
   build:
@@ -67,7 +67,7 @@ jobs:
       - name: Build container image
         run: |
           chmod +x gradlew
-          ./gradlew bootBuildImage --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+            ./gradlew bootBuildImage --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -89,3 +89,7 @@ jobs:
           password: ${{ secrets.TOKEN }}
       - name: Publish container image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Publish container image (latest)
+        run: |
+          docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
